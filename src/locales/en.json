@@ -1,0 +1,9 @@
+{
+  "main": {
+    "job_not_found": "JOB NOT FOUND",
+    "remain_text": {
+      "sec": "Remain: {0}sec",
+      "tick": "Remain: {0}ticks"
+    }
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "explorer.fileNesting.enabled": true,
+  "explorer.fileNesting.patterns": {
+    "tsconfig.json": "tsconfig.*.json, env.d.ts, env.*.d.ts",
+    "vite.config.*": "jsconfig*, vitest.config.*, cypress.config.*, playwright.config.*",
+    "package.json": "package-lock.json, pnpm*, .yarnrc*, yarn*, .eslint*, eslint*, .oxlint*, oxlint*, .prettier*, prettier*, .editorconfig",
+    "README.md": "README.*.md, CHANGELOG.md, LICENSE*, CONTRIBUTING.md, CODE_OF_CONDUCT.md"
+  },
+  "i18n-ally.keystyle": "nested",
+  "i18n-ally.localesPaths": [
+    "src/locales"
+  ]
+}

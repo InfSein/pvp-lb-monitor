@@ -1,0 +1,9 @@
+{
+  "main": {
+    "job_not_found": "未获取到职业",
+    "remain_text": {
+      "sec": "剩余：{0}秒",
+      "tick": "剩余：{0}跳"
+    }
+  }
+}
