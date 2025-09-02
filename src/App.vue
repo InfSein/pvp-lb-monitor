@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onUnmounted, onMounted, reactive, computed, watch } from 'vue'
+import { onUnmounted, onMounted, reactive, computed } from 'vue'
 import useLocale, { type AvailableLocale } from './locales'
 import { PvpZones } from './data'
 import { getLbMax } from './tools'
@@ -28,6 +28,8 @@ onMounted(() => {
 
   getPlayerJob()
   state.app.getJobIntervalId = setInterval(handleGetPlayerJob, 500)
+
+  setLocale(appUrlParams.value.lang as AvailableLocale)
 })
 onUnmounted(() => {
   removeOverlayListener('ChangePrimaryPlayer', handlePrimaryPlayerChange)
@@ -39,10 +41,6 @@ onUnmounted(() => {
   if (state.app.getJobIntervalId) {
     clearInterval(state.app.getJobIntervalId)
   }
-})
-
-watch(appUrlParams, (val) => {
-  setLocale(val.lang as AvailableLocale)
 })
 
 const state = reactive({
