@@ -8,6 +8,8 @@ export const GameZones = {
     shatter: 554,
     /** 昂萨哈凯尔（竞争战） */
     naadam: 888,
+    /** 沃刻其特（演习战） */
+    triumph: 1313,
   },
   rivalWings: {
     /** 隐塞（机动战） */
