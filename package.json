@@ -1,6 +1,6 @@
 {
   "name": "pvp-lb-monitor",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "private": true,
   "type": "module",
   "engines": {

@@ -30,6 +30,12 @@ onMounted(() => {
   state.app.getJobIntervalId = setInterval(handleGetPlayerJob, 500)
 
   setLocale(appUrlParams.value.lang as AvailableLocale)
+  
+  // 应用缩放参数
+  if (appUrlParams.value.scale !== 1) {
+    document.documentElement.style.transform = `scale(${appUrlParams.value.scale})`
+    document.documentElement.style.transformOrigin = 'top right'
+  }
 })
 onUnmounted(() => {
   removeOverlayListener('ChangePrimaryPlayer', handlePrimaryPlayerChange)
@@ -168,6 +174,9 @@ const registerTick = () => {
 }
 
 const mainText = computed(() => {
+  if (import.meta.env.DEV) {
+    return 'DEBUG MODE'
+  }
   if (!insidePvP.value) return ''
   if (!state.job) return t('main.job_not_found')
   if (state.lb.val >= state.lb.maxVal) return ''

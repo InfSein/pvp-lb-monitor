@@ -34,12 +34,12 @@
 * 希望查看「剩余：xx跳」<br>
   ![Preview of tick mode](./doc/image/zh/main.mode_tick.png)
   ```
-  https://infsein.github.io/pvp-lb-monitor/?lang=zh&mode=tick
+  https://infsein.github.io/pvp-lb-monitor/?lang=zh&mode=tick&scale=1
   ```
 * 希望查看「剩余：xx秒」<br>
   ![Preview of sec mode](./doc/image/zh/main.mode_sec.png)
   ```
-  https://infsein.github.io/pvp-lb-monitor/?lang=zh&mode=sec
+  https://infsein.github.io/pvp-lb-monitor/?lang=zh&mode=sec&scale=1
   ```
 
 > [!TIP]\

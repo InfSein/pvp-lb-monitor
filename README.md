@@ -34,12 +34,12 @@ Choose an overlay URL according to your preference.
 * To display **“Remain: xx ticks”**<br>
   ![Preview of tick mode](./doc/image/zh/main.mode_tick.png)
   ```
-  https://infsein.github.io/pvp-lb-monitor/?lang=en&mode=tick
+  https://infsein.github.io/pvp-lb-monitor/?lang=en&mode=tick&scale=1
   ```
 * To display **“Remain: xx sec”**<br>
   ![Preview of sec mode](./doc/image/zh/main.mode_sec.png)
   ```
-  https://infsein.github.io/pvp-lb-monitor/?lang=en&mode=sec
+  https://infsein.github.io/pvp-lb-monitor/?lang=en&mode=sec&scale=1
   ```
 
 > \[!TIP]

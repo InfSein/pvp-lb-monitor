@@ -15,18 +15,37 @@ interface AppParams {
    * @default `tick`
    */
   mode: string
+  /**
+   * 缩放比例
+   * @var `0.3 - 3` — 网站整体缩放比例
+   * @default `1`
+   */
+  scale: number
 }
 const defaultParams: AppParams = {
   lang: "zh",
   mode: "tick",
+  scale: 1,
 }
 
 function parseParams(): AppParams {
   const searchParams = new URLSearchParams(window.location.search)
 
+  // 解析并验证 scale 参数
+  let scale = defaultParams.scale
+  const scaleParam = searchParams.get("scale")
+  if (scaleParam) {
+    const parsedScale = parseFloat(scaleParam)
+    if (!isNaN(parsedScale)) {
+      // 限制在 0.3 到 3 之间
+      scale = Math.max(0.3, Math.min(3, parsedScale))
+    }
+  }
+
   return {
     lang: searchParams.get("lang") ?? defaultParams.lang,
     mode: searchParams.get("mode") ?? defaultParams.mode,
+    scale,
   }
 }
 
