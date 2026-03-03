@@ -1,4 +1,4 @@
-name: Deploy to GitHub Pages
+name: Deploy and Release
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
       - master
 
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
 
@@ -43,3 +43,46 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+  
+  release:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Get version from package.json
+        id: get_version
+        run: |
+          version="v$(node -p 'require("./package.json").version')"
+          echo "version=$version" >> $GITHUB_OUTPUT
+
+      - name: Get last commit message
+        id: get_commit
+        run: |
+          echo "msg<<EOF" >> $GITHUB_OUTPUT
+          echo "$(git log -1 --pretty=format:%B)" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
+      - name: Parse changelog and PR number
+        id: parse_changelog
+        run: |
+          msg="${{ steps.get_commit.outputs.msg }}"
+          pr_number=$(echo "$msg" | grep -oP '#\d+' | head -n 1 || true)
+          changelog=$(echo "$msg" | sed '1d')
+          echo "pr_number=$pr_number" >> $GITHUB_OUTPUT
+          echo "changelog<<EOF" >> $GITHUB_OUTPUT
+          echo "$changelog" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ steps.get_version.outputs.version }}
+          name: Release ${{ steps.get_version.outputs.version }}
+          body: |
+            ${{ steps.parse_changelog.outputs.changelog }}
+
+            **PR(s)**: ${{ steps.parse_changelog.outputs.pr_number }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

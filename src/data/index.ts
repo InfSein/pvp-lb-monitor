@@ -87,6 +87,7 @@ export const JobLbFrontlineCorrectionMap : Record<number, number> = {
   39: 15,
   // Ranged Physical DPS
   23: -15,
+  38: 30,
   // Ranged Magical DPS
   27: 15,
 }
